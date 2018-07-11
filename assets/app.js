@@ -5,11 +5,11 @@ $(document).ready(function(){
     let topics=["Simpsons", "Stranger Things", "Family Guy", "Game of Thrones", "The Office"];
     let loopCounter = sessionStorage.getItem("count");
     console.log(loopCounter)
-    // Created a get session storage to loop through the stored animals added by the user 
+    // Created a get session storage to loop through the stored shows added by the user 
     for(l=0;l <= loopCounter;l++){
        
       if(loopCounter!=null){
-        topics.push(sessionStorage.getItem("topic-" + l));
+        topics.push(sessionStorage.getItem("topic-" + 1));
         console.log(topics);
       }
       
@@ -27,7 +27,6 @@ $(document).ready(function(){
             button = `<button type="button" class="showButtons col-md-1 col-sm-2 col-xs-3 btn btn-primary" value= "${topics[i]}" >${topics[i]}</button>`;
             $("#showbuttons").append(button);
          }
-        //  $("#showbuttons").append(button);
     }
 
     // console.log($("#show-input").val())
@@ -38,7 +37,7 @@ $(document).ready(function(){
 
         event.preventDefault();
         let topic = $("#show-input").val().trim(); 
-        // // Setting a storage session for every animal added
+        // // Setting a storage session for every show added
         // sessionStorage.setItem("topic", topic);
         //Store in client
         if (topic!==""){
@@ -59,15 +58,15 @@ $(document).ready(function(){
    // Add a click event listener on the images to make a ajax call from the API
     $(document).on("click",".showButtons", function(){
         $("#show").empty();
-        let animalName = $(this).val();
+        let showName = $(this).val();
         // console.log(showName);
     
-        let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + showName + "&api_key=FNSlJ3B5F3zJwMZdPxfukk7N8aZPgZjZ&limit=10"
+        let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + showName + "&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3"
         let j, images=""
         let x = "480w_still";
         $.ajax({
             url:queryURL,
-            // url:"http://api.giphy.com/v1/gifs/search?q=cat&api_key=FNSlJ3B5F3zJwMZdPxfukk7N8aZPgZjZ&limit=10",
+            // url:"http://api.giphy.com/v1/gifs/search?q=cat&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3",
             method: "GET"
             }).then(function(response){
                 // console.log(response.data[0].images.downsized.url);
@@ -75,9 +74,9 @@ $(document).ready(function(){
                     console.log(response.data[j].images[x].url);
                     //.images.downsized.url
                     images =`<div class="panel panel-primary col-md-4 col-sm-4 col-xs-6">
-                                <img class="staticImage img-circle col-md-12 " data-name="${j}" src="${response.data[j].images[x].url}" alt="${animalName}" width="250px" height="250px">
+                                <img class="staticImage img-circle col-md-12 " data-name="${j}" src="${response.data[j].images[x].url}" alt="${showName}" width="250px" height="250px">
                                 <h3 class="col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-offset-3 col-xs-3"><span class="label label-primary">${response.data[j].rating}</span></h3>
-                                <a class="button col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-offset-3 col-xs-3" href="${response.data[j].images[x].url}" download="${animalName}.jpg"><span class="glyphicon glyphicon-download-alt"></span></a>
+                                <a class="button col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-offset-3 col-xs-3" href="${response.data[j].images[x].url}" download="${showName}.jpg"><span class="glyphicon glyphicon-download-alt"></span></a>
                             </div>`
                             console.log(showName)
                     $("#show").append(images);
@@ -105,8 +104,6 @@ $(document).ready(function(){
                 });  
 
             });
-
-         
 
     });
 
