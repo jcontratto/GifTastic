@@ -1,8 +1,8 @@
-"use script";
+
 $(document).ready(function(){
     //Creating variable and arrays
     let i, l, button="", toDoCount=0;
-    let topics=["Simpsons", "Stranger Things", "Family Guy", "Game of Thrones", "The Office"];
+    let topics=["Simpsons", "Frasier", "Family Guy", "Workaholics", "The Office", "Futurama", "Friends"];
     let loopCounter = sessionStorage.getItem("count");
     console.log(loopCounter)
     // Created a get session storage to loop through the stored shows added by the user 
@@ -38,7 +38,7 @@ $(document).ready(function(){
         event.preventDefault();
         let topic = $("#show-input").val().trim(); 
         // // Setting a storage session for every show added
-        // sessionStorage.setItem("topic", topic);
+         sessionStorage.setItem("topic", topic);
         //Store in client
         if (topic!==""){
             
@@ -61,12 +61,12 @@ $(document).ready(function(){
         let showName = $(this).val();
         // console.log(showName);
     
-        let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + showName + "&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3"
+        let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + showName + "&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3" + "&limit=10"
         let j, images=""
         let x = "480w_still";
         $.ajax({
             url:queryURL,
-            // url:"http://api.giphy.com/v1/gifs/search?q=cat&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3",
+            // url:"http://api.giphy.com/v1/gifs/search?q=&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3&limit=10",
             method: "GET"
             }).then(function(response){
                 // console.log(response.data[0].images.downsized.url);
