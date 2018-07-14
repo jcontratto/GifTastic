@@ -9,7 +9,7 @@ $(document).ready(function(){
     for(l=0;l <= loopCounter;l++){
        
       if(loopCounter!=null){
-        topics.push(sessionStorage.getItem("topic-" + 1));
+        //topics.push(sessionStorage.getItem("topic-" + 1));   MAY NEED THIS
         console.log(topics);
       }
       
@@ -32,7 +32,6 @@ $(document).ready(function(){
     // console.log($("#show-input").val())
 
     // Add a click event listener on the submit button created
-    
     $("#addShow").on("click", function(event) {
 
         event.preventDefault();
@@ -49,13 +48,10 @@ $(document).ready(function(){
                 // console.log(topic);  
             topics.push(topic);
             renderButtons();
-
         }
     });
 
-    
-
-   // Add a click event listener on the images to make a ajax call from the API
+    // Add a click event listener on the images to make a ajax call from the API
     $(document).on("click",".showButtons", function(){
         $("#show").empty();
         let showName = $(this).val();
@@ -83,10 +79,7 @@ $(document).ready(function(){
                     
                 }
                 
-                //  $(".staticImage").attr("src", response.data[0].images.downsized.url) ;    
-
-               // Add a class to make an image animated whenever its clicked 
-
+                // Add a class to make an image animated whenever its clicked 
                 $(document).on("click",".staticImage", function(){
                     let dataNumber = $(this).attr("data-name");
                     // console.log(response.data[9].images.downsized.url)
