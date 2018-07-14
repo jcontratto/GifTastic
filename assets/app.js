@@ -9,7 +9,7 @@ $(document).ready(function(){
     for(l=0;l <= loopCounter;l++){
        
       if(loopCounter!=null){
-        //topics.push(sessionStorage.getItem("topic-" + 1));   MAY NEED THIS
+        //topics.push(sessionStorage.getItem("topic-" + 1));   
         console.log(topics);
       }
       
@@ -20,16 +20,14 @@ $(document).ready(function(){
     // creating a function that creates buttons using the elements inside the array
     function renderButtons(){
 
-        $("#show-buttons").empty();
+        $("#showbuttons").empty();
         $("#show-input").val("");
-        // topics.push(sessionStorage.getItem("topic"));
+         
         for (i in topics){
             button = `<button type="button" class="showButtons col-md-1 col-sm-2 col-xs-3 btn btn-primary" value= "${topics[i]}" >${topics[i]}</button>`;
             $("#showbuttons").append(button);
          }
     }
-
-    // console.log($("#show-input").val())
 
     // Add a click event listener on the submit button created
     $("#addShow").on("click", function(event) {
@@ -45,7 +43,7 @@ $(document).ready(function(){
             // Add a tracker to client
             sessionStorage.setItem('count', toDoCount)
             toDoCount++;
-                // console.log(topic);  
+          
             topics.push(topic);
             renderButtons();
         }
@@ -55,7 +53,6 @@ $(document).ready(function(){
     $(document).on("click",".showButtons", function(){
         $("#show").empty();
         let showName = $(this).val();
-        // console.log(showName);
     
         let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + showName + "&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3" + "&limit=10"
         let j, images=""
@@ -65,7 +62,6 @@ $(document).ready(function(){
             // url:"http://api.giphy.com/v1/gifs/search?q=&api_key=BSNhgfdk69vzRPo6b9NPuMOSE7o1uZN3&limit=10",
             method: "GET"
             }).then(function(response){
-                // console.log(response.data[0].images.downsized.url);
                 for (j in response.data){
                     console.log(response.data[j].images[x].url);
                     //.images.downsized.url
@@ -78,16 +74,13 @@ $(document).ready(function(){
                     $("#show").append(images);
                     
                 }
-                
                 // Add a class to make an image animated whenever its clicked 
                 $(document).on("click",".staticImage", function(){
                     let dataNumber = $(this).attr("data-name");
-                    // console.log(response.data[9].images.downsized.url)
                     $(this).attr("src",response.data[dataNumber].images.downsized.url);
                     $(this).removeClass("staticImage");
                     $(this).addClass("animatedImage");
                 });  
-                
                 // Add a class to make an image static whenever its clicked 
                 $(document).on("click",".animatedImage", function(){
                     let dataNumber = $(this).attr("data-name");
