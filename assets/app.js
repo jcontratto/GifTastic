@@ -2,7 +2,7 @@
 $(document).ready(function(){
     //Creating variable and arrays
     let i, l, button="", toDoCount=0;
-    let topics=["Simpsons", "Frasier", "Family Guy", "Workaholics", "The Office", "Futurama", "Friends"];
+    let topics=["Simpsons", "Frasier", "Family Guy", "Workaholics", "The Office", "Futurama", "Friends", "G.I Joe", "Roseanne", "Garfield", "Barry", "Luke Cage", "Atlanta"];
     let loopCounter = sessionStorage.getItem("count");
     console.log(loopCounter)
     // Created a get session storage to loop through the stored shows added by the user 
